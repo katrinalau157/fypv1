@@ -7,6 +7,7 @@ import 'package:outline_material_icons/outline_material_icons.dart';
 import 'home_feed.dart';
 import 'ui_utils.dart';
 import 'takephoto.dart';
+import 'searchRecipe.dart';
 
 class MainScaffold extends StatefulWidget {
   @override
@@ -78,11 +79,26 @@ class _MainScaffoldState extends State<MainScaffold> {
   Widget _buildBody() {
     switch (_tabSelectedIndex) {
       case 0:
-        _scrollController =
-            ScrollController(initialScrollOffset: _lastFeedScrollOffset);
+//        _scrollController =
+//            ScrollController(initialScrollOffset: _lastFeedScrollOffset);
         return HomeFeedPage(scrollController: _scrollController);
+      case 1:
+//        _scrollController =
+//            ScrollController(initialScrollOffset: _lastFeedScrollOffset);
+        return searchRecipe();
+
       case 2:
+//        _scrollController =
+//            ScrollController(initialScrollOffset: _lastFeedScrollOffset);
         return takePhotoPage();
+      case 3:
+//        _scrollController =
+//            ScrollController(initialScrollOffset: _lastFeedScrollOffset);
+        return Container();
+      case 4:
+//        _scrollController =
+//            ScrollController(initialScrollOffset: _lastFeedScrollOffset);
+        return Container();
       default:
         const tabIndexToNameMap = {
           0: 'Home',

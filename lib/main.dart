@@ -6,6 +6,7 @@ import 'helpers/Constants.dart';
 import 'login.dart';
 import 'MainScaffold.dart';
 import 'takephoto.dart';
+import 'searchRecipe.dart';
 void main() {
   runApp(MyApp());
 }
@@ -30,6 +31,7 @@ class _MyAppState extends State<MyApp> {
     loginPageTag: (context) => loginPage(),
     mainScaffoldTag:(context) => MainScaffold(),
     takePhotoPageTag:(context) => takePhotoPage(),
+    searchRecipeTag:(context) => searchRecipe(),
   };
 
   Widget build(BuildContext context) {

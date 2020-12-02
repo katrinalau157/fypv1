@@ -20,5 +20,5 @@ const loginButtonText = "Login";
 const loginPageTag = 'Login Page';
 const mainScaffoldTag = 'mainScaffold Page';
 const takePhotoPageTag = 'takePhotoPage Page';
-
+const searchRecipeTag = 'searchRecipe Page';
 

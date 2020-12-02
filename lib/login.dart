@@ -25,6 +25,7 @@ class loginPage extends StatelessWidget {
               new Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5.0),
               ),
+              _home_btn_2(context),
             ]),
       ),
       resizeToAvoidBottomPadding: false,
@@ -57,8 +58,23 @@ class loginPage extends StatelessWidget {
             //set_selectedindex0_C();
             Navigator.of(context).pushNamed(mainScaffoldTag);
           },
-          child: Text('Login',style: GoogleFonts.josefinSans(fontSize:18,fontWeight: FontWeight.bold,color: appBlackColor),),
+          child: Text('User Login',style: GoogleFonts.josefinSans(fontSize:18,fontWeight: FontWeight.bold,color: appBlackColor),),
           color: appPinkColor,
+        ));
+  }
+  Widget _home_btn_2(BuildContext context) {
+    return new ButtonTheme(
+        minWidth: MediaQuery.of(context).size.width / 2.2,
+        height: MediaQuery.of(context).size.height / 16.5,
+        shape: new RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(30.0)),
+        child: RaisedButton(
+          onPressed: () {
+            //set_selectedindex0_C();
+            Navigator.of(context).pushNamed(mainScaffoldTag);
+          },
+          child: Text('Continue Without Login',style: GoogleFonts.josefinSans(fontSize:18,fontWeight: FontWeight.bold,color: appBlackColor),),
+          color: appMintColor,
         ));
   }
 

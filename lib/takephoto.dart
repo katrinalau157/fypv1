@@ -44,6 +44,7 @@ class _takePhotoPageState extends State<takePhotoPage> {
   File _image;
   bool _loading = false;
   String foodname = '';
+  String totalFood = '';
   @override
   void initState() {
     super.initState();
@@ -71,7 +72,24 @@ class _takePhotoPageState extends State<takePhotoPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _image == null ? Container() : Image.file(_image),
+              _outputs != null
+                  ? Text(
+                "Total ingredients: \n"+"$totalFood",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  background: Paint()..color = Colors.white,
+                ),
+              )
+                  : Text(
+                "Choose image from gallery or take a photo of your ingredients :)",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  background: Paint()..color = Colors.white,
+                ),
+              ),
+              _image == null ? Container() : Image.file(_image,width: 150, height: 150),
               SizedBox(
                 height: 20,
               ),
@@ -90,11 +108,37 @@ class _takePhotoPageState extends State<takePhotoPage> {
         ),
       ),
           ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: pickImage,
-        child: Icon(Icons.image),
+      floatingActionButton:
+      Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              onPressed: pickImage,
+              backgroundColor: appPinkColor,
+              foregroundColor: appGreyColor,
+              child: Icon(Icons.image),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            FloatingActionButton(
+              onPressed: pickImageFromCamera,
+              backgroundColor: appMintColor,
+              foregroundColor: appGreyColor,
+              child: Icon(Icons.camera_alt),
+            ),
+          ]
       ),
     );
+  }
+  pickImageFromCamera() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    if (image == null) return null;
+    setState(() {
+      _loading = true;
+      _image = image;
+    });
+    classifyImage(image);
   }
 
   pickImage() async {
@@ -118,7 +162,16 @@ class _takePhotoPageState extends State<takePhotoPage> {
     setState(() {
       _loading = false;
       _outputs = output;
-      foodname = _outputs[0]["label"].split(" ")[1];
+      RegExp exp = new RegExp(r"(\D+)");
+      foodname = _outputs[0]["label"];
+      Iterable<RegExpMatch> matches = exp.allMatches(foodname);
+      foodname = matches.elementAt(0).group(0).trim();
+      if(totalFood == ''){
+        totalFood = foodname;
+      }else{
+        totalFood = totalFood +","+ foodname;
+      }
+
     });
   }
 
