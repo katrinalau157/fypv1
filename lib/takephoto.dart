@@ -43,7 +43,7 @@ class _takePhotoPageState extends State<takePhotoPage> {
   List _outputs;
   File _image;
   bool _loading = false;
-
+  String foodname = '';
   @override
   void initState() {
     super.initState();
@@ -77,7 +77,8 @@ class _takePhotoPageState extends State<takePhotoPage> {
               ),
               _outputs != null
                   ? Text(
-                "${_outputs[0]["label"]}",
+                "$foodname",
+                //"${_outputs[0]["label"]}",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20.0,
@@ -117,13 +118,16 @@ class _takePhotoPageState extends State<takePhotoPage> {
     setState(() {
       _loading = false;
       _outputs = output;
+      foodname = _outputs[0]["label"].split(" ")[1];
     });
   }
 
   loadModel() async {
     await Tflite.loadModel(
-      model: "assets/tflite/model_unquant.tflite",
-      labels: "assets/tflite/labels.txt",
+//      model: "assets/tflite/model_unquant.tflite",
+//      labels: "assets/tflite/labels.txt",
+      model: "assets/tflite2/model.tflite",
+      labels: "assets/tflite2/labels.txt",
     );
   }
 

@@ -85,3 +85,5 @@ flutter:
     - assets/images/
     - assets/tflite/labels.txt
     - assets/tflite/model_unquant.tflite
+    - assets/tflite2/labels.txt
+    - assets/tflite2/model.tflite
